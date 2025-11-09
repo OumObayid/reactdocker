@@ -27,7 +27,7 @@ export default function App() {
       {/* Contrôles */}
       <div className="controls">
         <div>
-          <label>Vitesse de rotation de la Lune :</label>
+          <label>Rotation speed of the Moon :</label>
           <input
             type="range"
             min="2"
@@ -40,7 +40,7 @@ export default function App() {
         </div>
 
         <div>
-          <label>Vitesse de rotation de la Terre :</label>
+          <label>Rotation speed of the Earth :</label>
           <input
             type="range"
             min="5"
