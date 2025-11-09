@@ -1,0 +1,25 @@
+# Dockerfile.dev
+FROM node:24-alpine
+
+# Crée un répertoire de travail dans le conteneur
+WORKDIR /app
+
+# Copie uniquement les fichiers nécessaires à l'installation des dépendances
+COPY package*.json ./
+
+# Installe les dépendances
+RUN npm install
+
+# Copie le reste des fichiers du projet
+COPY . .
+
+# Permet à Vite d'être accessible depuis l'extérieur du conteneur
+ENV CHOKIDAR_USEPOLLING=true
+ENV HOST=0.0.0.0
+ENV PORT=5173
+
+# Ouvre le port 5173 pour accéder depuis le navigateur
+EXPOSE 5173
+
+# Lance le serveur de développement Vite
+CMD ["npm", "run", "dev"]

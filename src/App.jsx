@@ -1,35 +1,57 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React, { useState } from "react";
+import "./App.css";
 
-function App() {
-  const [count, setCount] = useState(0)
+export default function App() {
+  const [moonSpeed, setMoonSpeed] = useState(6); // secondes par orbite
+  const [earthSpeed, setEarthSpeed] = useState(20); // secondes par rotation de la Terre
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+    
+    <div className="space">
+      <div className="stars"></div>
 
-export default App
+      {/* Terre avec vitesse dynamique */}
+      <div
+        className="earth earth-spin"
+        style={{ animationDuration: `${earthSpeed}s` }}
+      ></div>
+
+      {/* Orbite et Lune */}
+      <div
+        className="orbit"
+        style={{ animationDuration: `${moonSpeed}s` }}
+      >
+        <div className="moon"></div>
+      </div>
+
+      {/* Contrôles */}
+      <div className="controls">
+        <div>
+          <label>Vitesse de rotation de la Lune :</label>
+          <input
+            type="range"
+            min="2"
+            max="15"
+            step="0.5"
+            value={moonSpeed}
+            onChange={(e) => setMoonSpeed(e.target.value)}
+          />
+          <span>{moonSpeed}s</span>
+        </div>
+
+        <div>
+          <label>Vitesse de rotation de la Terre :</label>
+          <input
+            type="range"
+            min="5"
+            max="60"
+            step="1"
+            value={earthSpeed}
+            onChange={(e) => setEarthSpeed(e.target.value)}
+          />
+          <span>{earthSpeed}s</span>
+        </div>
+      </div>
+    </div>
+  );
+}
