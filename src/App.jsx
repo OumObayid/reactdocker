@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import "./App.css";
+import { FaHome } from "react-icons/fa";
+
 
 export default function App() {
   const [moonSpeed, setMoonSpeed] = useState(6); // secondes par orbite
@@ -8,6 +10,7 @@ export default function App() {
   return (
     
     <div className="space">
+      <FaHome size={40} />
       <div className="stars"></div>
 
       {/* Terre avec vitesse dynamique */}
